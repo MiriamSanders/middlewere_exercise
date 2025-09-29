@@ -14,7 +14,7 @@ let userSchema = new mongoose.Schema({
 exports.UserModel = mongoose.model("users",userSchema);
 
 exports.createToken = (user_id) => {
-  let token = jwt.sign({_id:user_id},"MaorSecret",{expiresIn:"60mins"})
+  let token = jwt.sign({_id:user_id},"Secret",{expiresIn:"60mins"})
   return token;
 }
 

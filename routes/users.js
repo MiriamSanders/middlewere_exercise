@@ -30,7 +30,7 @@ router.get("/myInfo", async (req, res) => {
     return res.status(401).json({ msg: "You need to send token to this endpoint url" })
   }
   try {
-    let tokenData = jwt.verify(token, "MaorSecret");
+    let tokenData = jwt.verify(token, "Secret");
     console.log(tokenData);
     let user = await UserModel.findOne({ _id: tokenData._id },
        { password: 0 });

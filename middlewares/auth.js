@@ -7,7 +7,7 @@ exports.auth = async(req,res,next) => {
   }
   try{
  
-    let tokenData = jwt.verify(token, "MaorSecret");
+    let tokenData = jwt.verify(token, "Secret");
   
     req.tokenData = tokenData
     next()
