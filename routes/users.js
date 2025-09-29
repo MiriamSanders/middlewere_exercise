@@ -76,11 +76,11 @@ router.post("/login", async (req, res) => {
   try {
     let user = await UserModel.findOne({ email: req.body.email })
     if (!user) {
-      return res.status(401).json({ msg: "Password or email is wrong ,code:1" })
+      return res.status(401).json({ msg: "Password or email is wrong " })
     }
     let authPassword = await bcrypt.compare(req.body.password, user.password);
     if (!authPassword) {
-      return res.status(401).json({ msg: "Password or email is wrong ,code:2" });
+      return res.status(401).json({ msg: "Password or email is wrong " });
     }
     let newToken = createToken(user._id);
     res.json({ token: newToken });
