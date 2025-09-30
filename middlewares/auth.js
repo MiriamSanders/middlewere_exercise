@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const{config}=require("../config/secret");
 
 exports.auth = async(req,res,next) => {
   let token = req.header("x-api-key")
@@ -7,7 +8,7 @@ exports.auth = async(req,res,next) => {
   }
   try{
  
-    let tokenData = jwt.verify(token, "Secret");
+    let tokenData = jwt.verify(token, config.tokenSecret);
   
     req.tokenData = tokenData
     next()

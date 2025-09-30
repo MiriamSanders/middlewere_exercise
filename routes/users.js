@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const {config}= require("../config/secret");
 
 const { auth } = require("../middlewares/auth");
 const { UserModel, validUser, validLogin, createToken } = require("../models/userModel")
@@ -30,7 +31,7 @@ router.get("/myInfo", async (req, res) => {
     return res.status(401).json({ msg: "You need to send token to this endpoint url" })
   }
   try {
-    let tokenData = jwt.verify(token, "Secret");
+    let tokenData = jwt.verify(token, config.tokenSecret);
     console.log(tokenData);
     let user = await UserModel.findOne({ _id: tokenData._id },
        { password: 0 });
